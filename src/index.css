@@ -1,43 +1,117 @@
-/* === Base === */
-body {
+/* === Base Styles === */
+html, body {
+  height: 100%;
   margin: 0;
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: flex-start; /* top aligned, change to center for vertical */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f9f9f9;
+  background: #121212; /* Dark background */
+  color: #e5e7eb; /* Light text */
 }
 
+/* === App Container === */
 .app-container {
-  max-width: 1100px;
-  margin: auto;
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  color: #e5e7eb;
 }
 
-h1 {
-  text-align: center;
+/* === Header === */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center; /* centers logo + text */
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 12px 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-h2, h3, h4 {
-  margin-top: 0;
+.app-header .logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f9fafb;
 }
 
-/* === Forms, Lists, Tables === */
+.app-header h1 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* === Tabs === */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background: #2c2c2c;
+  color: #cbd5e1;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabs button.active {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tabs button:hover:not(.active) {
+  background: #3b3b3b;
+}
+
+/* === Tab Content === */
+.tab-content {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* === Forms, Tables, Lists === */
 form, .list, .gallery, .detail, .form, .card {
-  background: white;
+  background: #1f1f1f;
   padding: 15px;
-  margin: 15px 0;
+  margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
 }
 
 input, select, textarea, button {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #374151;
   border-radius: 6px;
   font-size: 14px;
+  background: #2c2c2c;
+  color: #e5e7eb;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #2563eb;
+  outline: none;
 }
 
 textarea {
@@ -45,249 +119,97 @@ textarea {
 }
 
 button {
-  background: #282c34;
+  background: #2563eb;
   color: white;
   cursor: pointer;
   margin-left: 5px;
+  transition: background 0.2s ease;
 }
 
 button:hover {
-  background: #444;
+  background: #1d4ed8;
 }
 
 .btn-edit {
-  background: #1976d2;
+  background: #10b981;
   color: #fff;
+}
+
+.btn-edit:hover {
+  background: #059669;
 }
 
 .btn-delete {
-  background: #d32f2f;
+  background: #ef4444;
   color: #fff;
 }
 
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+/* === Table === */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
   font-size: 14px;
+  color: #e5e7eb;
 }
 
 th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #374151;
   padding: 8px;
   text-align: left;
 }
 
-/* === Gallery === */
-.gallery {
-  margin-top: 20px;
+table tr:hover {
+  background: #2c2c2c;
 }
 
-.image-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-}
-
-/* === Comparison Viewer === */
-.viewer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.image-box {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 8px;
-  min-height: 260px;
-}
-
-.image-box img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-}
-
-.image-title {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.image-placeholder {
-  height: 220px;
-  display: grid;
-  place-items: center;
-  color: #777;
-  background: #f4f4f6;
-  border-radius: 6px;
-}
-
-/* === Annotation Tool === */
-.annotator {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 12px;
-  align-items: start;
-}
-
-.image-stage {
-  position: relative;
-  background: #f6f7fb;
-  border: 1px dashed #cbd5e1;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: crosshair;
-}
-
-.image-stage img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.marker {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  outline: 2px solid rgba(0,0,0,0.25);
-  background: rgba(255, 0, 0, 0.35);
-}
-
-.marker.active {
-  outline: 3px solid rgba(0,0,0,0.5);
-  background: rgba(255, 80, 80, 0.5);
-}
-
-.panel {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.marker-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 8px 0;
-  max-height: 180px;
-  overflow: auto;
-  font-size: 13px;
-}
-
-.marker-list li {
-  padding: 6px 8px;
-  border-radius: 6px;
-  margin-bottom: 4px;
-  cursor: pointer;
-}
-
-.marker-list li.selected {
-  background: #eef2ff;
-}
-
-.marker-editor label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 13px;
-}
-
-.marker-editor input,
-.marker-editor select,
-.marker-editor textarea {
-  width: 100%;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 13px;
-}
-
-.marker-editor .row {
-  display: flex;
-  gap: 8px;
-}
-
-/* === Inspection Detail === */
-.detail .detail-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-.card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-/* === Printable Record Modal === */
+/* === Modal for Maintenance Record === */
 .record-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.8);
   display: grid;
   place-items: center;
   z-index: 50;
 }
 
 .record-modal-inner {
-  background: #fff;
+  background: #1e1e1e;
   width: min(1000px, 95vw);
   max-height: 90vh;
   overflow: auto;
   border-radius: 10px;
-  padding: 12px;
+  padding: 20px;
   position: relative;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.7);
 }
 
 .record-modal .close {
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: 10px;
+  right: 15px;
   border: none;
   background: transparent;
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
+  color: #f9fafb;
+  font-weight: bold;
 }
 
-/* === Maintenance Record === */
-.record h2 {
-  margin-top: 0;
+.record-modal .close:hover {
+  color: #ef4444;
 }
 
-.record-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 12px;
+/* === Misc Enhancements === */
+.gallery img, .detail img, .card img {
+  border-radius: 6px;
 }
 
-.record .thumbs img {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+input::placeholder, textarea::placeholder {
+  color: #9ca3af;
 }
 
-.small-title {
-  font-weight: 600;
-  margin: 6px 0;
-}
-
-.record-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.record-table th, .record-table td {
-  border: 1px solid #ddd;
-  padding: 6px;
-}
-
-.print-hint {
-  margin-top: 10px;
-}
